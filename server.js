@@ -11,6 +11,8 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 // parse incoming JSON data
 app.use(express.json());
+//instructs the server to make certain files readily available
+app.use(express.static('public'));
 
 
 
@@ -110,6 +112,28 @@ app.post('/api/animals', (req, res) => {
   }
   
 });
+
+
+//ROUTE FOR INDEX.HTML
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
+//ROUTE FOR ANIMALS.HTML
+app.get('/animals', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/animals.html'));
+});
+
+//ROUTE FOR ZOOKEEPR.HTML
+app.get('/zookeepers', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/zookeepers.html'));
+});
+
+//WILDCARD ROUTE... IF COSTUMER REQUESTS A ROUTE THAT DOESNT EXIST
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
 
 
 
