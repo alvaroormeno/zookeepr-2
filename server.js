@@ -74,3 +74,6 @@ app.get('/api/animals/:id', (req, res) => {
         res.send(404)
     }     
 });
+
+
+//trial
